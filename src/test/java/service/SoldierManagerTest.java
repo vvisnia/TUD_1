@@ -17,6 +17,7 @@ public class SoldierManagerTest {
 	private final static String name_1 = "Zenek";
 	private final static String rank_1 = "General";
 	private final static int yearOfService_1 = 3;
+	Soldier soldier;
 	
 	@Test
 	public void checkConnection(){
@@ -52,4 +53,32 @@ public class SoldierManagerTest {
 	assertEquals(SoldierManager.getAllSoldier().get(0).getRank(), "Szeregowy");
 	assertEquals(SoldierManager.getAllSoldier().get(0).getyearOfService(), 31);
 	}
+	
+	@Test
+	public void checkGettingSoldierByID()
+	{
+	SoldierManager.clearSoldier();
+	Soldier soldierRetrieved = null;
+	SoldierManager.addSoldier(new Soldier("Czesiek", "Plutonowy", 2));
+	soldier = SoldierManager.getAllSoldier().get(0);
+	soldierRetrieved = SoldierManager.getSoldierById(soldier);
+	assertEquals(soldier.getId(), soldierRetrieved.getId());
+	assertEquals(soldier.getName(), soldierRetrieved.getName());
+	assertEquals(soldier.getRank(), soldierRetrieved.getRank());
+	}
+	
+	@Test
+	public void checkClearingSoldier()
+	{
+	SoldierManager.clearSoldier();
+	assertEquals(SoldierManager.getAllSoldier().size(), 0);
+	}
+	@Test
+	public void checkDeleting()
+	{
+	assertEquals(SoldierManager.addSoldier(new Soldier("Wojtek", "Porucznik", 2)), 1);
+	soldier = SoldierManager.getAllSoldier().get(0);
+	assertEquals(SoldierManager.deleteSoldier(soldier) , 1);
+	}
+	
 }
