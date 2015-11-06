@@ -7,7 +7,6 @@ import java.util.List;
 import org.junit.Test;
 
 import domain.Vehicle;
-
 import service.VehicleManager;
 
 public class VehicleManagerTest {
@@ -22,6 +21,7 @@ public class VehicleManagerTest {
 		private final static String type_1 = "Limuzyna";
 		private final static String status_1 = "Niezniszczalny";
 		private final static int speed_1 = 900;
+		UnitManager unitManager = new UnitManager();
 		
 		Vehicle vehicle;
 		
@@ -33,7 +33,7 @@ public class VehicleManagerTest {
 		public void checkAdding(){
 			
 			Vehicle vehicle = new Vehicle(name_1, type_1, status_1, speed_1);
-			
+			unitManager.clearUnit();
 			VehicleManager.clearVehicle();
 			assertEquals(1,VehicleManager.addVehicle(vehicle));
 			
@@ -49,6 +49,7 @@ public class VehicleManagerTest {
 		@Test
 		public void checkUpdatingVehicle()
 		{
+			unitManager.clearUnit();
 		VehicleManager.clearVehicle();
 		VehicleManager.addVehicle(new Vehicle("Rudy", "Czolg", "Sprawny", 12));
 		Vehicle vehicle = VehicleManager.getAllVehicle().get(0);
@@ -66,6 +67,7 @@ public class VehicleManagerTest {
 		@Test
 		public void checkGettingVehicleByID()
 		{
+			unitManager.clearUnit();
 		VehicleManager.clearVehicle();
 		Vehicle vehicleRetrieved = null;
 		VehicleManager.addVehicle(new Vehicle("Obama", "HMV", "Czarny", 12));

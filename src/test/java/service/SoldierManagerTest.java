@@ -7,6 +7,7 @@ import java.util.List;
 import org.junit.Test;
 
 import domain.Soldier;
+import service.UnitManager;
 
 import service.SoldierManager;
 
@@ -18,15 +19,19 @@ public class SoldierManagerTest {
 	private final static String rank_1 = "General";
 	private final static int yearOfService_1 = 3;
 	Soldier soldier;
+	UnitManager unitManager = new UnitManager();
+	
 	
 	@Test
 	public void checkConnection(){
 		assertNotNull(SoldierManager.getConnection());
+		
 	}
 	@Test
 	public void checkAdding(){
 		
 		Soldier soldier = new Soldier(name_1, rank_1, yearOfService_1);
+		unitManager.clearUnit();
 		
 		SoldierManager.clearSoldier();
 		assertEquals(1,SoldierManager.addSoldier(soldier));
@@ -43,6 +48,7 @@ public class SoldierManagerTest {
 	public void checkUpdatingSoldier()
 	{
 	SoldierManager.clearSoldier();
+	unitManager.clearUnit();
 	SoldierManager.addSoldier(new Soldier("Grzes", "Kapitan", 12));
 	Soldier soldier = SoldierManager.getAllSoldier().get(0);
 	soldier.setName("Krzys");
@@ -58,6 +64,7 @@ public class SoldierManagerTest {
 	public void checkGettingSoldierByID()
 	{
 	SoldierManager.clearSoldier();
+	unitManager.clearUnit();
 	Soldier soldierRetrieved = null;
 	SoldierManager.addSoldier(new Soldier("Czesiek", "Plutonowy", 2));
 	soldier = SoldierManager.getAllSoldier().get(0);
@@ -71,6 +78,7 @@ public class SoldierManagerTest {
 	public void checkClearingSoldier()
 	{
 	SoldierManager.clearSoldier();
+	unitManager.clearUnit();
 	assertEquals(SoldierManager.getAllSoldier().size(), 0);
 	}
 	@Test
