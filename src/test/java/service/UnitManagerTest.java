@@ -107,6 +107,7 @@ assertEquals(unit2.getName(), unitRetrieved.getName());
 @Test
 public void checkGettingUnitBySoldierID()
 {
+	/*poprawka na labkach bo test był zły lol */
 	unitManager.clearUnit();
 	soldierManager.clearSoldier();
 	Soldier soldier = new Soldier("Wojtek", "Major", 3);
@@ -115,6 +116,17 @@ public void checkGettingUnitBySoldierID()
 	Vehicle vehicle = new Vehicle("T34", "Czolg", "Popsuty", 3);
 	vehicleManager.addVehicle(vehicle);
 	Unit unit = new Unit(soldierManager.getAllSoldier().get(0).getId(), vehicleManager.getAllVehicle().get(0).getId(), "C");
+	unitManager.addUnit(unit);
+	soldier = new Soldier("Wojttek", "Matjor", 4);
+	soldierManager.addSoldier(soldier);
+	vehicleManager.clearVehicle();
+	vehicle = new Vehicle("T3t4", "Czotlg", "Popsutty", 6);
+	vehicleManager.addVehicle(vehicle);
+	unit = new Unit(soldierManager.getAllSoldier().get(0).getId(), vehicleManager.getAllVehicle().get(0).getId(), "w");
+	unitManager.addUnit(unit);
+	unit = new Unit(soldierManager.getAllSoldier().get(0).getId(), vehicleManager.getAllVehicle().get(0).getId(), "c");
+	unitManager.addUnit(unit);
+	unit = new Unit(soldierManager.getAllSoldier().get(0).getId(), vehicleManager.getAllVehicle().get(0).getId(), "s");
 	unitManager.addUnit(unit);
 
 units = unitManager.getUnitBySoldierID(soldierManager.getAllSoldier().get(0));
