@@ -40,6 +40,8 @@ public class UnitManager {
 	private PreparedStatement getUnitBySoldierIDStmt;
 	private PreparedStatement getUnitByVehicleIDStmt;
 	
+
+	
 	public UnitManager(){
 	try {
 		connection = DriverManager.getConnection(url);
@@ -78,6 +80,8 @@ public class UnitManager {
 		deleteUnitBySoldierIDStmt = connection.prepareStatement("DELETE FROM Unit WHERE idreff_soldier = ?");
 		deleteUnitByVehicleIDStmt = connection.prepareStatement("DELETE FROM Unit WHERE idreff_vehicle = ?");
 		
+
+		
 		getUnitBySoldierIDStmt = connection.prepareStatement("SELECT * FROM Unit WHERE idreff_soldier = ?");
 		getUnitByVehicleIDStmt = connection.prepareStatement("SELECT * FROM Unit WHERE idreff_vehicle = ?");
 		
@@ -92,6 +96,7 @@ public class UnitManager {
 	Connection getConnection() {
 		return connection;
 	}
+	
 	void clearUnit() {
 		try {
 			deleteAllUnitStmt.executeUpdate();
@@ -102,6 +107,7 @@ public class UnitManager {
 	
 	public int addUnit(Unit unit) {
 		int count = 0;
+		
 		try {
 			addUnitStmt.setInt(1, unit.getSoldierId());
 			addUnitStmt.setInt(2, unit.getVehicleId());

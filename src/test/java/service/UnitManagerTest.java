@@ -128,10 +128,19 @@ public void checkGettingUnitBySoldierID()
 	unitManager.addUnit(unit);
 	unit = new Unit(soldierManager.getAllSoldier().get(0).getId(), vehicleManager.getAllVehicle().get(0).getId(), "s");
 	unitManager.addUnit(unit);
-
+	unit = new Unit(2, 2, "H");
+	unitManager.addUnit(unit);
+	
 units = unitManager.getUnitBySoldierID(soldierManager.getAllSoldier().get(0));
 
-assertEquals(soldierManager.getAllSoldier().get(0).getId(), units.get(0).getSoldierId());
+int listlenght = units.size();
+
+for(int j=0; j<listlenght ; j++){
+
+assertEquals(soldierManager.getAllSoldier().get(0).getId(), units.get(j).getSoldierId());
+
+}
+
 }
 
 
